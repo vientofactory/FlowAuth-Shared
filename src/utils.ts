@@ -1,4 +1,4 @@
-import { PERMISSIONS, ROLES, ROLE_PERMISSIONS, ROLE_NAMES, PERMISSION_NAMES, PERMISSION_UTILS } from "./constants";
+import { PERMISSIONS, ROLES, ROLE_PERMISSIONS, ROLE_NAMES, PERMISSION_NAMES, PERMISSION_UTILS } from "./constants.js";
 
 export class PermissionUtils {
   /**
