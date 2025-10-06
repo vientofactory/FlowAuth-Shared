@@ -1,4 +1,10 @@
-import { PERMISSIONS, ROLES, ROLE_PERMISSIONS, ROLE_NAMES, PERMISSION_NAMES, PERMISSION_UTILS } from "./constants.js";
+import {
+  ROLES,
+  ROLE_PERMISSIONS,
+  ROLE_NAMES,
+  PERMISSION_NAMES,
+  PERMISSION_UTILS,
+} from "./constants.js";
 
 export class PermissionUtils {
   /**
@@ -18,7 +24,9 @@ export class PermissionUtils {
    * @returns 하나라도 권한이 있는지 여부
    */
   static hasAnyPermission(userPermissions: number, requiredPermissions: number[]): boolean {
-    return requiredPermissions.some((permission) => this.hasPermission(userPermissions, permission));
+    return requiredPermissions.some((permission) =>
+      this.hasPermission(userPermissions, permission)
+    );
   }
 
   /**
@@ -28,7 +36,9 @@ export class PermissionUtils {
    * @returns 모든 권한을 가지고 있는지 여부
    */
   static hasAllPermissions(userPermissions: number, requiredPermissions: number[]): boolean {
-    return requiredPermissions.every((permission) => this.hasPermission(userPermissions, permission));
+    return requiredPermissions.every((permission) =>
+      this.hasPermission(userPermissions, permission)
+    );
   }
 
   /**
@@ -85,7 +95,12 @@ export class PermissionUtils {
     }
 
     // 포함 관계로 가장 가까운 역할 찾기 (권한 레벨이 높은 순서로)
-    const rolePriority = [ROLES.USER_MANAGER, ROLES.CLIENT_MANAGER, ROLES.TOKEN_MANAGER, ROLES.USER];
+    const rolePriority = [
+      ROLES.USER_MANAGER,
+      ROLES.CLIENT_MANAGER,
+      ROLES.TOKEN_MANAGER,
+      ROLES.USER,
+    ];
     for (const roleName of rolePriority) {
       const rolePermissions = ROLE_PERMISSIONS[roleName as keyof typeof ROLE_PERMISSIONS];
       if (this.hasAllPermissions(permissions, [...rolePermissions])) {

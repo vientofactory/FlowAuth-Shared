@@ -17,7 +17,9 @@
     "dev": "tsc --watch",
     "test": "vitest",
     "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix"
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts"
   },
   "keywords": [
     "flowauth",
@@ -28,12 +30,16 @@
   "author": "vientofactory",
   "license": "MIT",
   "devDependencies": {
+    "@eslint/js": "^9.37.0",
     "@types/node": "^22.0.0",
-    "typescript": "^5.0.0",
-    "vitest": "^3.0.0",
-    "eslint": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0"
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.57.1",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.45.0",
+    "vitest": "^3.0.0"
   },
   "files": [
     "dist"

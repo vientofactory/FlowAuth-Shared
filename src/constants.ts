@@ -1,15 +1,15 @@
 // JWT 관련 상수들
 export const JWT_CONSTANTS = {
-  SECRET_KEY_FALLBACK: 'your-secret-key', // fallback value, use ConfigService.get('JWT_SECRET') in actual usage
-  EXPIRES_IN: '1h',
-  ALGORITHMS: ['HS256'] as const,
-  TOKEN_TYPE: 'access' as const,
+  SECRET_KEY_FALLBACK: "your-secret-key", // fallback value, use ConfigService.get('JWT_SECRET') in actual usage
+  EXPIRES_IN: "1h",
+  ALGORITHMS: ["HS256"] as const,
+  TOKEN_TYPE: "access" as const,
 } as const;
 
 // 토큰 타입 상수들
 export const TOKEN_TYPES = {
-  LOGIN: 'login',
-  OAUTH2: 'oauth2',
+  LOGIN: "login",
+  OAUTH2: "oauth2",
 } as const;
 
 export type TokenType = (typeof TOKEN_TYPES)[keyof typeof TOKEN_TYPES];
@@ -85,11 +85,11 @@ export const PERMISSION_UTILS = {
 
 // 역할 상수들
 export const ROLES = {
-  USER: 'user',
-  CLIENT_MANAGER: 'client_manager',
-  TOKEN_MANAGER: 'token_manager',
-  USER_MANAGER: 'user_manager',
-  ADMIN: 'admin',
+  USER: "user",
+  CLIENT_MANAGER: "client_manager",
+  TOKEN_MANAGER: "token_manager",
+  USER_MANAGER: "user_manager",
+  ADMIN: "admin",
 } as const;
 
 // 역할별 권한 매핑
@@ -126,41 +126,36 @@ export const ROLE_HIERARCHY = {
   [ROLES.CLIENT_MANAGER]: [ROLES.USER],
   [ROLES.TOKEN_MANAGER]: [ROLES.USER],
   [ROLES.USER_MANAGER]: [ROLES.USER, ROLES.CLIENT_MANAGER],
-  [ROLES.ADMIN]: [
-    ROLES.USER,
-    ROLES.CLIENT_MANAGER,
-    ROLES.TOKEN_MANAGER,
-    ROLES.USER_MANAGER,
-  ],
+  [ROLES.ADMIN]: [ROLES.USER, ROLES.CLIENT_MANAGER, ROLES.TOKEN_MANAGER, ROLES.USER_MANAGER],
 } as const;
 
 // 역할 이름 매핑
 export const ROLE_NAMES = {
-  [ROLES.USER]: '일반 사용자',
-  [ROLES.CLIENT_MANAGER]: '클라이언트 관리자',
-  [ROLES.TOKEN_MANAGER]: '토큰 관리자',
-  [ROLES.USER_MANAGER]: '사용자 관리자',
-  [ROLES.ADMIN]: '시스템 관리자',
+  [ROLES.USER]: "일반 사용자",
+  [ROLES.CLIENT_MANAGER]: "클라이언트 관리자",
+  [ROLES.TOKEN_MANAGER]: "토큰 관리자",
+  [ROLES.USER_MANAGER]: "사용자 관리자",
+  [ROLES.ADMIN]: "시스템 관리자",
 } as const;
 
 // 권한 이름 매핑
 export const PERMISSION_NAMES: Record<number, string> = {
-  [PERMISSIONS.READ_USER]: '사용자 조회',
-  [PERMISSIONS.WRITE_USER]: '사용자 수정',
-  [PERMISSIONS.DELETE_USER]: '사용자 삭제',
-  [PERMISSIONS.READ_CLIENT]: '클라이언트 조회',
-  [PERMISSIONS.WRITE_CLIENT]: '클라이언트 수정',
-  [PERMISSIONS.DELETE_CLIENT]: '클라이언트 삭제',
-  [PERMISSIONS.READ_TOKEN]: '토큰 조회',
-  [PERMISSIONS.WRITE_TOKEN]: '토큰 수정',
-  [PERMISSIONS.DELETE_TOKEN]: '토큰 삭제',
-  [PERMISSIONS.MANAGE_USERS]: '사용자 관리',
-  [PERMISSIONS.MANAGE_SYSTEM]: '시스템 관리',
-  [PERMISSIONS.READ_DASHBOARD]: '대시보드 조회',
-  [PERMISSIONS.WRITE_DASHBOARD]: '대시보드 수정',
-  [PERMISSIONS.MANAGE_DASHBOARD]: '대시보드 관리',
-  [PERMISSIONS.UPLOAD_FILE]: '파일 업로드',
-  [PERMISSIONS.ADMIN_ACCESS]: '관리자 접근',
+  [PERMISSIONS.READ_USER]: "사용자 조회",
+  [PERMISSIONS.WRITE_USER]: "사용자 수정",
+  [PERMISSIONS.DELETE_USER]: "사용자 삭제",
+  [PERMISSIONS.READ_CLIENT]: "클라이언트 조회",
+  [PERMISSIONS.WRITE_CLIENT]: "클라이언트 수정",
+  [PERMISSIONS.DELETE_CLIENT]: "클라이언트 삭제",
+  [PERMISSIONS.READ_TOKEN]: "토큰 조회",
+  [PERMISSIONS.WRITE_TOKEN]: "토큰 수정",
+  [PERMISSIONS.DELETE_TOKEN]: "토큰 삭제",
+  [PERMISSIONS.MANAGE_USERS]: "사용자 관리",
+  [PERMISSIONS.MANAGE_SYSTEM]: "시스템 관리",
+  [PERMISSIONS.READ_DASHBOARD]: "대시보드 조회",
+  [PERMISSIONS.WRITE_DASHBOARD]: "대시보드 수정",
+  [PERMISSIONS.MANAGE_DASHBOARD]: "대시보드 관리",
+  [PERMISSIONS.UPLOAD_FILE]: "파일 업로드",
+  [PERMISSIONS.ADMIN_ACCESS]: "관리자 접근",
 };
 
 // JWT 토큰 만료 시간 상수들 (시간 단위)
@@ -174,52 +169,50 @@ export const AUTH_CONSTANTS = {
   BCRYPT_SALT_ROUNDS: 10,
   DEFAULT_USER_PERMISSIONS: ROLES.CLIENT_MANAGER, // OAuth2 기본 기능 권한
   TOKEN_EXPIRATION_SECONDS: 86400, // 24 hours (로그인 토큰과 일치)
-  TOKEN_TYPE: 'access' as const,
+  TOKEN_TYPE: "access" as const,
 } as const;
 
 // 에러 메시지들
 export const AUTH_ERROR_MESSAGES = {
-  JWT_SECRET_MISSING: 'JWT_SECRET 환경 변수가 필요합니다',
-  INVALID_CREDENTIALS: '잘못된 자격 증명입니다',
-  USER_NOT_FOUND: '사용자를 찾을 수 없습니다',
-  TOKEN_EXPIRED: '토큰이 만료되었습니다',
-  INVALID_TOKEN: '잘못된 토큰입니다',
-  INVALID_TOKEN_TYPE: '잘못된 토큰 유형입니다',
-  UNAUTHORIZED: '권한이 없습니다',
-  AUTHENTICATION_FAILED: '인증에 실패했습니다',
-  USER_ALREADY_EXISTS: '이미 존재하는 사용자입니다',
-  LOGIN_FAILED: '로그인에 실패했습니다',
-  TWO_FACTOR_NOT_ENABLED: '이 사용자에 대해 2단계 인증이 활성화되지 않았습니다',
-  INVALID_TWO_FACTOR_TOKEN: '잘못된 2단계 인증 토큰입니다',
-  INVALID_BACKUP_CODE: '잘못된 백업 코드입니다',
+  JWT_SECRET_MISSING: "JWT_SECRET 환경 변수가 필요합니다",
+  INVALID_CREDENTIALS: "잘못된 자격 증명입니다",
+  USER_NOT_FOUND: "사용자를 찾을 수 없습니다",
+  TOKEN_EXPIRED: "토큰이 만료되었습니다",
+  INVALID_TOKEN: "잘못된 토큰입니다",
+  INVALID_TOKEN_TYPE: "잘못된 토큰 유형입니다",
+  UNAUTHORIZED: "권한이 없습니다",
+  AUTHENTICATION_FAILED: "인증에 실패했습니다",
+  USER_ALREADY_EXISTS: "이미 존재하는 사용자입니다",
+  LOGIN_FAILED: "로그인에 실패했습니다",
+  TWO_FACTOR_NOT_ENABLED: "이 사용자에 대해 2단계 인증이 활성화되지 않았습니다",
+  INVALID_TWO_FACTOR_TOKEN: "잘못된 2단계 인증 토큰입니다",
+  INVALID_BACKUP_CODE: "잘못된 백업 코드입니다",
 } as const;
 
 // 로그 메시지들
 export const AUTH_LOG_MESSAGES = {
-  JWT_STRATEGY_INITIALIZED:
-    'JWT Strategy initialized with Bearer token extraction',
-  LOGIN_ATTEMPT: 'Login attempt for email:',
-  LOGIN_SUCCESSFUL: 'Login successful for user:',
-  LOGIN_FAILED_USER_NOT_FOUND: 'Login failed: User not found for email:',
-  LOGIN_FAILED_INVALID_PASSWORD: 'Login failed: Invalid password for user:',
-  JWT_VALIDATION_SUCCESSFUL: 'JWT validation successful for user:',
-  JWT_VALIDATION_ERROR: 'JWT validation error:',
-  PROFILE_REQUEST: 'Profile request for user ID:',
-  PROFILE_RETRIEVAL_SUCCESSFUL: 'Profile retrieved for user:',
-  PROFILE_RETRIEVAL_FAILED: 'Profile retrieval failed for user ID:',
-  INVALID_JWT_PAYLOAD_SUB: 'Invalid JWT payload: missing or invalid sub claim',
-  LOGIN_FAILED: 'Login error for email',
-  INVALID_JWT_PAYLOAD_EMAIL:
-    'Invalid JWT payload: missing or invalid email claim',
-  INVALID_TOKEN_TYPE: 'Invalid token type:',
-  USER_NOT_FOUND_BY_ID: 'User not found for ID:',
-  EMAIL_MISMATCH: 'Email mismatch for user ID:',
+  JWT_STRATEGY_INITIALIZED: "JWT Strategy initialized with Bearer token extraction",
+  LOGIN_ATTEMPT: "Login attempt for email:",
+  LOGIN_SUCCESSFUL: "Login successful for user:",
+  LOGIN_FAILED_USER_NOT_FOUND: "Login failed: User not found for email:",
+  LOGIN_FAILED_INVALID_PASSWORD: "Login failed: Invalid password for user:",
+  JWT_VALIDATION_SUCCESSFUL: "JWT validation successful for user:",
+  JWT_VALIDATION_ERROR: "JWT validation error:",
+  PROFILE_REQUEST: "Profile request for user ID:",
+  PROFILE_RETRIEVAL_SUCCESSFUL: "Profile retrieved for user:",
+  PROFILE_RETRIEVAL_FAILED: "Profile retrieval failed for user ID:",
+  INVALID_JWT_PAYLOAD_SUB: "Invalid JWT payload: missing or invalid sub claim",
+  LOGIN_FAILED: "Login error for email",
+  INVALID_JWT_PAYLOAD_EMAIL: "Invalid JWT payload: missing or invalid email claim",
+  INVALID_TOKEN_TYPE: "Invalid token type:",
+  USER_NOT_FOUND_BY_ID: "User not found for ID:",
+  EMAIL_MISMATCH: "Email mismatch for user ID:",
 } as const;
 
 // 사용자 유형 정의
 export enum USER_TYPES {
-  REGULAR = 'regular', // 일반 사용자 - OAuth2 로그인만 사용
-  DEVELOPER = 'developer', // 개발자 - 클라이언트 관리 가능
+  REGULAR = "regular", // 일반 사용자 - OAuth2 로그인만 사용
+  DEVELOPER = "developer", // 개발자 - 클라이언트 관리 가능
 }
 
 // 캐시 관련 상수들
@@ -238,13 +231,10 @@ export const TWO_FACTOR_CONSTANTS = {
 
 // 사용자 유형별 기본 권한 (역할 기반)
 export const USER_TYPE_PERMISSIONS = {
-  [USER_TYPES.REGULAR]: ROLE_PERMISSIONS[ROLES.USER].reduce(
-    (acc, perm) => acc | perm,
-    0,
-  ),
+  [USER_TYPES.REGULAR]: ROLE_PERMISSIONS[ROLES.USER].reduce((acc, perm) => acc | perm, 0),
   [USER_TYPES.DEVELOPER]: ROLE_PERMISSIONS[ROLES.CLIENT_MANAGER].reduce(
     (acc, perm) => acc | perm,
-    0,
+    0
   ),
 } as const;
 
