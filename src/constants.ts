@@ -199,6 +199,7 @@ export const AUTH_ERROR_MESSAGES = {
   TWO_FACTOR_NOT_ENABLED: "이 사용자에 대해 2단계 인증이 활성화되지 않았습니다",
   INVALID_TWO_FACTOR_TOKEN: "잘못된 2단계 인증 토큰입니다",
   INVALID_BACKUP_CODE: "잘못된 백업 코드입니다",
+  EMAIL_NOT_VERIFIED: "이메일 인증이 완료되지 않았습니다. 이메일을 확인하여 계정을 인증해주세요.",
 } as const;
 
 // 로그 메시지들
