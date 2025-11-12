@@ -176,11 +176,68 @@ export const JWT_TOKEN_EXPIRY = {
   OAUTH2_HOURS: 1, // OAuth2 토큰: 1시간
 } as const;
 
+// 토큰 만료 시간 상수들 (초 단위)
+export const TOKEN_EXPIRY_SECONDS: {
+  readonly ACCESS_TOKEN: number;
+  readonly OAUTH2_ACCESS_TOKEN: number;
+  readonly REFRESH_TOKEN: number;
+  readonly EMAIL_VERIFICATION_TOKEN: number;
+  readonly PASSWORD_RESET_TOKEN: number;
+  readonly TWO_FACTOR_TOKEN: number;
+} = {
+  // JWT Access Token 만료 시간
+  ACCESS_TOKEN: 86400, // 24시간 (86400초)
+  // OAuth2 Access Token 만료 시간
+  OAUTH2_ACCESS_TOKEN: 3600, // 1시간 (3600초)
+  // Refresh Token 만료 시간
+  REFRESH_TOKEN: 30 * 24 * 60 * 60, // 30일 (2592000초)
+  // 이메일 인증 토큰 만료 시간
+  EMAIL_VERIFICATION_TOKEN: 24 * 60 * 60, // 24시간 (86400초)
+  // 비밀번호 재설정 토큰 만료 시간
+  PASSWORD_RESET_TOKEN: 60 * 60, // 1시간 (3600초)
+  // 2FA 토큰 만료 시간
+  TWO_FACTOR_TOKEN: 5 * 60, // 5분 (300초)
+};
+
+// 토큰 만료 시간 상수들 (밀리초 단위)
+export const TOKEN_EXPIRY_MILLISECONDS: {
+  readonly ACCESS_TOKEN: number;
+  readonly OAUTH2_ACCESS_TOKEN: number;
+  readonly REFRESH_TOKEN: number;
+  readonly EMAIL_VERIFICATION_TOKEN: number;
+  readonly PASSWORD_RESET_TOKEN: number;
+  readonly TWO_FACTOR_TOKEN: number;
+} = {
+  // JWT Access Token 만료 시간
+  ACCESS_TOKEN: TOKEN_EXPIRY_SECONDS.ACCESS_TOKEN * 1000,
+  // OAuth2 Access Token 만료 시간
+  OAUTH2_ACCESS_TOKEN: TOKEN_EXPIRY_SECONDS.OAUTH2_ACCESS_TOKEN * 1000,
+  // Refresh Token 만료 시간
+  REFRESH_TOKEN: TOKEN_EXPIRY_SECONDS.REFRESH_TOKEN * 1000,
+  // 이메일 인증 토큰 만료 시간
+  EMAIL_VERIFICATION_TOKEN: TOKEN_EXPIRY_SECONDS.EMAIL_VERIFICATION_TOKEN * 1000,
+  // 비밀번호 재설정 토큰 만료 시간
+  PASSWORD_RESET_TOKEN: TOKEN_EXPIRY_SECONDS.PASSWORD_RESET_TOKEN * 1000,
+  // 2FA 토큰 만료 시간
+  TWO_FACTOR_TOKEN: TOKEN_EXPIRY_SECONDS.TWO_FACTOR_TOKEN * 1000,
+};
+
+// 토큰 만료 시간 상수들 (일 단위)
+export const TOKEN_EXPIRY_DAYS: {
+  readonly REFRESH_TOKEN: number;
+  readonly EMAIL_VERIFICATION_TOKEN: number;
+} = {
+  // Refresh Token 만료 시간
+  REFRESH_TOKEN: 30, // 30일
+  // 이메일 인증 토큰 만료 시간
+  EMAIL_VERIFICATION_TOKEN: 1, // 1일
+};
+
 // 인증 관련 상수들
 export const AUTH_CONSTANTS = {
   BCRYPT_SALT_ROUNDS: 10,
   DEFAULT_USER_PERMISSIONS: ROLES.CLIENT_MANAGER, // OAuth2 기본 기능 권한
-  TOKEN_EXPIRATION_SECONDS: 86400, // 24 hours (로그인 토큰과 일치)
+  TOKEN_EXPIRATION_SECONDS: TOKEN_EXPIRY_SECONDS.ACCESS_TOKEN, // 24 hours (로그인 토큰과 일치)
   TOKEN_TYPE: "access" as const,
 } as const;
 
@@ -228,11 +285,22 @@ export enum USER_TYPES {
   DEVELOPER = "developer", // 개발자 - 클라이언트 관리 가능
 }
 
-// 캐시 관련 상수들
-export const CACHE_CONSTANTS = {
+// 캐시 관련 상수들 (밀리초 단위)
+export const CACHE_CONSTANTS: {
+  readonly USER_CACHE_TTL: number;
+  readonly PERMISSIONS_CACHE_TTL: number;
+  readonly SCOPE_CACHE_TTL: number;
+  readonly JWT_VALIDATION_TTL: number;
+  readonly JWKS_TTL: number;
+  readonly EMAIL_QUEUE_RETENTION: number;
+} = {
   USER_CACHE_TTL: 600000, // 10분 (밀리초)
   PERMISSIONS_CACHE_TTL: 300000, // 5분 (밀리초)
-} as const;
+  SCOPE_CACHE_TTL: 3600000, // 1시간 (밀리초) - OAuth2 스코프 캐시
+  JWT_VALIDATION_TTL: 300000, // 5분 (밀리초) - JWT 검증 캐시
+  JWKS_TTL: 3600000, // 1시간 (밀리초) - JWKS 캐시
+  EMAIL_QUEUE_RETENTION: 86400000, // 24시간 (밀리초) - 이메일 큐 기록 보존
+};
 
 // 2FA 관련 상수들
 export const TWO_FACTOR_CONSTANTS = {
