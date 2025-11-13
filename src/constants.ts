@@ -306,11 +306,12 @@ export const CACHE_CONSTANTS: {
 export const TWO_FACTOR_CONSTANTS = {
   SECRET_LENGTH: 32, // TOTP 시크릿 길이
   BACKUP_CODE_COUNT: 10, // 백업 코드 개수
-  BACKUP_CODE_LENGTH: 12, // 각 백업 코드 길이 (Base32 12자리)
-  BACKUP_CODE_ENTROPY_BYTES: 16, // 백업 코드 엔트로피 (128비트)
+  BACKUP_CODE_LENGTH: 16, // 각 백업 코드 길이 (Base32)
+  BACKUP_CODE_ENTROPY_BYTES: 10, // 백업 코드 엔트로피 (80비트)
   BACKUP_CODE_MIN_UNIQUE_CHARS: 8, // 최소 고유 문자 수
-  BACKUP_CODE_MAX_GENERATION_ATTEMPTS: 30, // 최대 생성 시도 횟수
+  BACKUP_CODE_MAX_GENERATION_ATTEMPTS: 50, // 최대 생성 시도 횟수 증가
   WINDOW_TIME: 30, // TOTP 윈도우 시간 (초)
+  BACKUP_CODE_FORMAT_LENGTH: 19, // 하이픈 포함한 형식화된 길이 (XXXX-XXXX-XXXX-XXXX)
 } as const;
 
 // 사용자 유형별 기본 권한 (역할 기반)
