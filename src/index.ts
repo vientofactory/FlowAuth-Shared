@@ -4,3 +4,6 @@ export * from "./utils.js";
 
 // Error codes shared between frontend and backend
 export * from "./error-codes.js";
+
+// Storage constants shared between frontend and backend
+export * from "./storage-constants.js";
